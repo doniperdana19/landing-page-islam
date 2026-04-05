@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,18 +16,22 @@
         <div class="text-2xl font-bold text-emerald-800 tracking-tight">NUANSA<span class="text-amber-500">ISLAM</span></div>
         
         <div class="hidden md:flex gap-8 font-semibold text-sm uppercase tracking-wider">
-            <a href="/" class="text-emerald-900 hover:text-emerald-600 transition">Beranda</a>
+            <a href="/" class="text-emerald-900 hover:text-emerald-600 transition border-b-2 border-emerald-700">Beranda</a>
             <a href="/tentang" class="text-slate-500 hover:text-emerald-600 transition">Tentang Kami</a>
             <a href="/donasi" class="text-slate-500 hover:text-emerald-600 transition">Donasi</a>
         </div>
 
         <div class="flex items-center gap-4">
             @if (Route::has('login'))
-                <div class="flex gap-4 mr-2 border-r pr-4 border-gray-200 text-sm font-bold">
+                <div class="flex gap-4 items-center mr-2 border-r pr-4 border-gray-200 text-sm font-bold">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-emerald-700">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="text-emerald-700 hover:text-emerald-900">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="text-slate-600 hover:text-emerald-600">Masuk</a>
+                        
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="text-emerald-700 hover:text-emerald-500 underline underline-offset-4">Daftar</a>
+                        @endif
                     @endauth
                 </div>
             @endif
@@ -36,6 +40,23 @@
             </a>
         </div>
     </nav>
+
+    <div class="bg-emerald-50 py-4 px-8 border-b border-emerald-100">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-emerald-700 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                    DP
+                </div>
+                <div>
+                    <p class="text-xs font-bold text-emerald-900 uppercase tracking-widest">AGAMA 6</p>
+                    <p class="text-sm text-slate-600">Doni Perdana | NIM: 312310293</p> 
+                </div>
+            </div>
+            <div class="text-[10px] bg-white px-4 py-1.5 rounded-full border border-emerald-200 text-emerald-700 font-bold uppercase shadow-sm">
+                Mata Kuliah: Agama 6 - Laravel 11
+            </div>
+        </div>
+    </div>
 
     <header class="py-28 px-6 text-center bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none">
@@ -53,8 +74,10 @@
                 Nuansa Islam hadir sebagai ekosistem terpadu untuk mendukung ibadah harian Anda melalui integrasi teknologi dan nilai keislaman yang autentik.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <button class="bg-amber-500 text-emerald-950 px-10 py-4 rounded-xl font-bold hover:bg-amber-400 transition-all hover:-translate-y-1 shadow-2xl shadow-amber-900/20">Pelajari Program</button>
-                <button class="bg-white/10 backdrop-blur-md border border-white/20 px-10 py-4 rounded-xl font-bold hover:bg-white/20 transition-all">Kontribusi Dakwah</button>
+                <a href="#artikel" class="bg-amber-500 text-emerald-950 px-10 py-4 rounded-xl font-bold hover:bg-amber-400 transition-all hover:-translate-y-1 shadow-2xl shadow-amber-900/20">Baca Kisah Al-Qur'an</a>
+                @guest
+                    <a href="{{ route('register') }}" class="bg-white/10 backdrop-blur-md border border-white/20 px-10 py-4 rounded-xl font-bold hover:bg-white/20 transition-all text-white">Gabung Jadi Santri</a>
+                @endguest
             </div>
         </div>
     </header>
@@ -98,7 +121,7 @@
                 <div class="w-12 h-1 bg-amber-400 mb-4 rounded-full"></div>
                 <h3 class="font-bold text-2xl mb-2 text-white">Literasi Islam</h3>
                 <p class="opacity-80 text-sm mb-8 leading-relaxed font-light">Perdalam pemahaman keagamaan melalui pustaka digital yang dibimbing oleh asatidz kompeten di bidangnya.</p>
-                <button class="w-full py-4 bg-emerald-700/80 backdrop-blur-md border border-white/20 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all duration-300 shadow-xl">Akses Perpustakaan</button>
+                <a href="#artikel" class="block w-full py-4 bg-emerald-700/80 backdrop-blur-md border border-white/20 text-white text-center font-bold rounded-xl hover:bg-emerald-600 transition-all duration-300 shadow-xl">Akses Perpustakaan</a>
             </div>
         </div>
 
@@ -113,12 +136,52 @@
                 <a href="/donasi" class="block w-full py-4 bg-amber-500 text-emerald-950 text-center font-bold rounded-xl hover:bg-amber-400 transition-all shadow-xl shadow-amber-900/20">Mulai Kontribusi</a>
             </div>
         </div>
-
     </section>
 
-    <footer class="bg-emerald-900 text-white pt-16 pb-8 px-8 mt-20">
+    <section id="artikel" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-emerald-900 mb-4 tracking-tight">Kisah-Kisah Dalam Al-Qur'an</h2>
+            <div class="w-20 h-1 bg-amber-500 mx-auto rounded-full"></div>
+            <p class="mt-6 text-slate-500">Pelajari hikmah dari perjalanan para nabi dan kaum terdahulu.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <article class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden group">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1470&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Gua">
+                </div>
+                <div class="p-8">
+                    <div class="flex gap-2 mb-4">
+                        <span class="text-[10px] font-bold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full uppercase">Kisah Teladan</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-emerald-900 mb-3 group-hover:text-emerald-600 transition">Keteguhan Pemuda Ashabul Kahfi</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                        Ini adalah kisah tentang tujuh pemuda yang mempertahankan iman mereka kepada Allah SWT di tengah tekanan raja yang zalim. Mereka bersembunyi di dalam gua dan ditidurkan oleh Allah selama ratusan tahun.
+                    </p>
+                    <a href="/artikel/ashabul-kahfi" class="text-emerald-700 font-bold text-sm flex items-center gap-2 hover:translate-x-2 transition-all">Baca Detail →</a>
+                </div>
+            </article>
+
+            <article class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden group">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?q=80&w=1470&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Desert">
+                </div>
+                <div class="p-8">
+                    <div class="flex gap-2 mb-4">
+                        <span class="text-[10px] font-bold bg-amber-100 text-amber-700 px-3 py-1 rounded-full uppercase">Kisah Nabi</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-emerald-900 mb-3 group-hover:text-emerald-600 transition">Kesabaran Nabi Yusuf as di Balik Ujian</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                        Nabi Yusuf as mengalami rangkaian ujian berat, mulai dari dikhianati saudara sendiri hingga difitnah masuk penjara. Namun, kesabaran mengantarkan beliau menjadi penguasa di Mesir.
+                    </p>
+                    <a href="/artikel/nabi-yusuf" class="text-emerald-700 font-bold text-sm flex items-center gap-2 hover:translate-x-2 transition-all">Baca Detail →</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="bg-emerald-900 text-white pt-16 pb-8 px-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
-            
             <div>
                 <h4 class="text-amber-400 font-bold text-lg mb-6 underline decoration-2 underline-offset-8">About Us</h4>
                 <p class="text-xs leading-relaxed opacity-90 mb-6">
@@ -126,8 +189,7 @@
                 </p>
                 <div class="space-y-3 text-[11px]">
                     <p><span class="text-amber-400">📞</span> (021) 77 811 933 (General)</p>
-                    <p><span class="text-emerald-400 font-bold">WA</span> 0878 7600 1222 (Layanan Muzaki)</p>
-                    <p><span class="text-emerald-400 font-bold">WA</span> 0877 2059 5747 (Layanan Mustahik)</p>
+                    <p><span class="text-emerald-400 font-bold">WA</span> 0878 7600 1222</p>
                     <p><span class="text-amber-400">✉️</span> nuansaislam@baznas.go.id</p>
                 </div>
             </div>
@@ -138,8 +200,6 @@
                     <li><a href="#" class="hover:text-amber-400 transition">Nuansa Sejahtera</a></li>
                     <li><a href="#" class="hover:text-amber-400 transition">Nuansa Peduli</a></li>
                     <li><a href="#" class="hover:text-amber-400 transition">Nuansa Cerdas</a></li>
-                    <li><a href="#" class="hover:text-amber-400 transition">Nuansa Sehat</a></li>
-                    <li><a href="#" class="hover:text-amber-400 transition">Nuansa Taqwa</a></li>
                 </ul>
             </div>
 
@@ -149,7 +209,6 @@
                     <li><a href="/donasi" class="hover:text-amber-400 transition">Donasi</a></li>
                     <li><a href="#" class="hover:text-amber-400 transition">Zakat</a></li>
                     <li><a href="#" class="hover:text-amber-400 transition">Infaq</a></li>
-                    <li><a href="#" class="hover:text-amber-400 transition">Kurban</a></li>
                 </ul>
             </div>
 
@@ -161,13 +220,12 @@
                         <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white text-xs shadow-xl">▶</div>
                     </div>
                 </div>
-                <p class="text-[9px] mt-3 opacity-60 text-center uppercase tracking-widest font-bold">Dokumentasi Penyaluran</p>
             </div>
         </div>
 
         <div class="mt-16 pt-8 border-t border-white/10 text-center">
             <p class="text-[10px] opacity-60 tracking-[0.3em] uppercase">
-                © 2026 Created with NUANSA ISLAM Digital Team
+                © 2026 Created by Doni Perdana - NUANSA ISLAM Digital Team
             </p>
         </div>
     </footer>

@@ -26,3 +26,8 @@ Route::get('/donasi', function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Route untuk halaman detail artikel
+Route::get('/artikel/{slug}', function ($slug) {
+    return view('artikel-detail', ['slug' => $slug]);
+});
